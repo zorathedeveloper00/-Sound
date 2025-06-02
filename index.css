@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 11% 98%;
+  --foreground: 222 47% 11%;
+  --muted: 210 40% 98%;
+  --muted-foreground: 215 16% 47%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 215 20% 65%;
+  --radius: 0.5rem;
+  
+  /* Dark theme colors */
+  --dark-900: 240 10% 6%; /* #0F0F0F */
+  --dark-800: 240 6% 12%; /* #1E1E1E */
+  --dark-700: 240 5% 16%; /* #2A2A2A */
+  --dark-600: 240 4% 23%; /* #3A3A3A */
+  --dark-500: 240 3% 29%; /* #4A4A4A */
+  --accent-blue: 207 90% 54%; /* #3A86FF */
+  --accent-cyan: 188 100% 50%; /* #00D4FF */
+  --accent-green: 142 69% 58%; /* #10B981 */
+  --text-primary: 210 40% 90%; /* #E5E5E5 */
+  --text-muted: 215 20% 54%; /* #8A8A8A */
+}
+
+.dark {
+  --background: 240 10% 6%;
+  --foreground: 210 40% 90%;
+  --muted: 240 6% 12%;
+  --muted-foreground: 215 20% 54%;
+  --popover: 240 6% 12%;
+  --popover-foreground: 210 40% 90%;
+  --card: 240 6% 12%;
+  --card-foreground: 210 40% 90%;
+  --border: 240 5% 16%;
+  --input: 240 5% 16%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 240 5% 16%;
+  --secondary-foreground: 210 40% 90%;
+  --accent: 240 5% 16%;
+  --accent-foreground: 210 40% 90%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 210 40% 90%;
+  --ring: 215 20% 65%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom slider styles for Web Audio controls */
+.audio-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.audio-slider::-webkit-slider-track {
+  background: hsl(var(--dark-600));
+  height: 6px;
+  border-radius: 3px;
+  border: 1px solid hsl(var(--dark-700));
+}
+
+.audio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(145deg, hsl(var(--accent-blue)), hsl(207 90% 44%));
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid hsl(207 90% 34%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin-top: -8px;
+}
+
+.audio-slider::-moz-range-thumb {
+  background: linear-gradient(145deg, hsl(var(--accent-blue)), hsl(207 90% 44%));
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid hsl(207 90% 34%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.audio-slider::-moz-range-track {
+  background: hsl(var(--dark-600));
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+}
+
+/* Vertical EQ sliders */
+.eq-slider {
+  writing-mode: bt-lr; /* IE */
+  writing-mode: vertical-lr;
+  -webkit-appearance: slider-vertical;
+  width: 40px;
+  height: 200px;
+  background: transparent;
+  outline: none;
+}
+
+.eq-slider::-webkit-slider-track {
+  background: hsl(var(--dark-600));
+  width: 6px;
+  border-radius: 3px;
+}
+
+.eq-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: hsl(var(--accent-blue));
+  cursor: pointer;
+  border: 2px solid hsl(var(--dark-800));
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Audio level meters */
+.audio-meter {
+  background: linear-gradient(to top, 
+    hsl(0 84% 60%) 0%, 
+    hsl(25 95% 53%) 20%, 
+    hsl(48 96% 53%) 40%, 
+    hsl(var(--accent-green)) 60%, 
+    hsl(var(--accent-green)) 100%);
+  opacity: 0.8;
+  transition: width 0.1s ease;
+}
+
+/* Effect toggle styles */
+.effect-toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.effect-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.effect-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsl(var(--dark-600));
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.effect-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: hsl(var(--text-muted));
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .effect-slider {
+  background-color: hsl(var(--accent-green));
+  box-shadow: 0 0 10px hsla(var(--accent-green), 0.5);
+}
+
+input:checked + .effect-slider:before {
+  transform: translateX(20px);
+  background-color: white;
+}
+
+/* Focus styles for accessibility */
+.audio-slider:focus,
+.eq-slider:focus,
+.effect-toggle input:focus + .effect-slider {
+  outline: 2px solid hsl(var(--accent-blue));
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes waveform-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.waveform-animation {
+  animation: waveform-pulse 2s ease-in-out infinite;
+}
